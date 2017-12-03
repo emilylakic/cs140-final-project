@@ -50,4 +50,27 @@ public class Instruction {
 		opcodes.put("CMPZ", 13);
 		for(String str : opcodes.keySet()) mnemonics.put(opcodes.get(str), str);
 	}
+	
+	public String getText() {
+		StringBuilder buff = new StringBuilder();
+		int flags = opcode & 6; // remove parity bit that will have been verified
+		buff.append(mnemonics.get(opcode/8) + "  ");
+		if(flags == 2) buff.append('#');
+		else if(flags == 4) buff.append('@');
+		else if(flags == 6) buff.append('&');
+		buff.append(Integer.toString(arg, 16));
+		return buff.toString().toUpperCase();
+	}
+	
+	public String getBinHex() {
+		StringBuilder buff = new StringBuilder();
+		String s = "00000000" + Integer.toString(opcode, 2) + "  " + Integer.toHexString(arg);
+		buff.append(s.substring(s.length()-8));
+		return buff.toString().toUpperCase();
+	}
+	
+	@Override
+	public String toString() {
+		return "Instruction [" + Integer.toString(opcode, 2) + ", " + Integer.toString(arg, 16) + "]";
+	}
 }
