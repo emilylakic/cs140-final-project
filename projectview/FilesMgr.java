@@ -1,4 +1,4 @@
-ackage projectview;
+package projectview;
 
 import java.io.File;
 import java.io.FileInputStream;
