@@ -28,7 +28,7 @@
 4. ProcessorViewPanel -
 5. ControlPanel -
 6. StepControl -
-7. ViewMediator
+7. ViewMediator -
 
 *Project Part 3 
 
