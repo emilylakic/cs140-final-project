@@ -15,7 +15,7 @@
 
 1. Assembler -
 2. FullAssembler 
-3. Loader
+****3. Loader
 4. Assembler Error Checking 
 5. SimpleAssembler -
 6. test.pexe -
