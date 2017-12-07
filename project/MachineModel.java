@@ -129,7 +129,7 @@ public class MachineModel {
 			}
 			
 			if(cpu.accum == 0) cpu.accum = 1;
-			else if(cpu.accum == 1) cpu.accum = 0;
+			else cpu.accum = 0;
 			cpu.pc++;
 		});
 		
@@ -153,6 +153,7 @@ public class MachineModel {
 				String fString = "(" + (flags%8 > 3?"1":"0") + (flags%4 > 1?"1":"0") + ")";
 				throw new IllegalInstructionException("Illegal flags for this instruction: " + fString);
 			}
+			cpu.pc++;
 		});
 		
 		//ACTION entry for "STO"
@@ -164,6 +165,7 @@ public class MachineModel {
 				String fString = "(" + (flags%8 > 3?"1":"0") + (flags%4 > 1?"1":"0") + ")";
 				throw new IllegalInstructionException("Illegal flags for this instruction: " + fString);
 			}
+			cpu.pc++;
 		});
 		
 		//ACTION entry for "ADD"
