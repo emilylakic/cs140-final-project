@@ -36,3 +36,4 @@
 2. MenuBarBuilder -
 3. CodeAccessException -
 4. WindowListenerFactory -
+Note: You can now run the program. To run your Error checking Assembler, You replace SimpleAssembler() in the line private Assembler assembler = new SimpleAssembler(); near the start of FilesMgr with the name of the class that you have written. Your class must implement Assembler.
