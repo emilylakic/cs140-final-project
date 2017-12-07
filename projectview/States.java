@@ -2,15 +2,15 @@ package projectview;
 
 public enum States {
 
-		AUTO_STEPPING {
-			public void enter(){
-				states[ASSEMBLE] = false;
-				states[CLEAR] = false;
-				states[LOAD] = false;
-				states[RELOAD] = false;
-				states[RUN] = true;
-				states[RUNNING] = true;
-				states[STEP] = false;
+	AUTO_STEPPING {
+		public void enter(){
+			states[ASSEMBLE] = false;
+			states[CLEAR] = false;
+			states[LOAD] = false;
+			states[RELOAD] = false;
+			states[RUN] = true;
+			states[RUNNING] = true;
+			states[STEP] = false;
 		}		
 	}, NOTHING_LOADED {
 		public void enter() {
@@ -51,30 +51,30 @@ public enum States {
 	private static final int RUN = 4;
 	private static final int RUNNING = 5;
 	private static final int STEP = 6; 
-	
+
 	boolean[] states = new boolean[7];
-	
+
 	public abstract void enter();
-	
+
 	public boolean getAssembleFileActive() {
-	    return states[ASSEMBLE];
+		return states[ASSEMBLE];
 	}
 	public boolean getClearActive() {
-	    return states[CLEAR];
+		return states[CLEAR];
 	}
 	public boolean getLoadFileActive() {
-	    return states[LOAD];
+		return states[LOAD];
 	}
 	public boolean getReloadActive() {
-	    return states[RELOAD];
+		return states[RELOAD];
 	}
 	public boolean getRunningActive() {
-	    return states[RUNNING];
+		return states[RUNNING];
 	}
 	public boolean getRunPauseActive() {
-	    return states[RUN];
+		return states[RUN];
 	}
 	public boolean getStepActive() {
-	    return states[STEP];
+		return states[STEP];
 	}
 }
