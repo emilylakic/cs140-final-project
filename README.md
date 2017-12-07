@@ -14,10 +14,10 @@
 *Project Part 1 
 
 1. Assembler -
-**2. FullAssembler 
+2. FullAssembler 
 3. Loader
 4. Assembler Error Checking 
-**5. SimpleAssembler -
+5. SimpleAssembler -
 
 *Project Part 2
 
@@ -27,7 +27,7 @@
 4. ProcessorViewPanel -
 5. ControlPanel -
 6. StepControl -
-**7. ViewMediator
+7. ViewMediator
 
 *Project Part 3 
 
