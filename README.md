@@ -23,7 +23,7 @@
   - [x] ProcessorViewPanel
   - [x] ControlPanel
   - [x] StepControl
-  - [] ViewMediator dk why but prob bc of assemble
+  - [x] ViewMediator
 - [x] **Part 3**
   - [x] FilesMgr.java
   - [x] MenuBarBuilder
