@@ -12,7 +12,7 @@
   - [x] Memory
 - [x] **Part 1**
   - [x] Loader
-  - [x] Assembler
+  - [] Assembler
   - [x] FullAssembler
   - [x] Simple Assembler
   - [x] Assembler Error Checking
