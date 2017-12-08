@@ -255,18 +255,35 @@ public class ViewMediator extends Observable {
 				System.out.println("Illegal access to code from line " + model.getPC()); // just for debugging
 				System.out.println("Exception message: " + e.getMessage());			
 			} catch(ArrayIndexOutOfBoundsException e) {
-				// similar JOPtionPane
-	// YOU HAVE TO FILL OUT ALL THESE CATCH BLOCKS
+				JOptionPane.showMessageDialog(frame,
+						"Illegal access to data from " + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Run time error", JOptionPane.OK_OPTION);
 			} catch(NullPointerException e) {
-				// similar JOPtionPane
+				JOptionPane.showMessageDialog(frame,
+						"NullPointerException  from" + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Run time error", JOptionPane.OK_OPTION);
 			} catch(ParityCheckException e) {
-				// similar JOPtionPane
+				JOptionPane.showMessageDialog(frame,
+						"ParityCheckException from " + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Run time error", JOptionPane.OK_OPTION);			
 			} catch(IllegalInstructionException e) {
-				// similar JOPtionPane
+				JOptionPane.showMessageDialog(frame,
+						"Illegal Instruction from " + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Run time error", JOptionPane.OK_OPTION);
 			} catch(IllegalArgumentException e) {
-				// similar JOPtionPane
+				JOptionPane.showMessageDialog(frame,
+						"Program error from " + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Run time error", JOptionPane.OK_OPTION);
 			} catch(DivideByZeroException e) {
-				// similar JOPtionPane
+				JOptionPane.showMessageDialog(frame,
+						"Divide by zero from " + model.getPC() + "\n"
+						+ "Exception message: " + e.getMessage(),
+						"Rune time error", JOptionPane.OK_OPTION);
 			}
 		}
 		setChanged();
