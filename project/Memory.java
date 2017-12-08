@@ -28,6 +28,7 @@ public class Memory {
 	
 	void clearData() {
 		for(int i = 0; i < data.length; i++) data[i] = 0;
+		changedDataIndex = -1;
 	}
 	
 	int getChangedDataIndex() {

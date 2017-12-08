@@ -114,9 +114,21 @@ public class FullAssembler implements Assembler {
 										error.append("\nError on line " + (i+1) + ": this mnemonic has too many arguments");
 									}
 									try{
-										//... all the code to compute the correct flags
-										int arg = Integer.parseInt(parts[1],16);
-										//.. the rest of setting up the opPart
+										int flags = 0;
+										String s = parts[1];
+										if(parts[1].charAt(0) == '#') {
+											flags = 2;
+											s = s.substring(1);
+										} else if(parts[1].charAt(0) == '@') {
+											flags = 4;
+											s = s.substring(1);
+										} else if(parts[1].charAt(0) == '&') {
+											flags = 6;
+											s = s.substring(1);
+										}
+										int arg = Integer.parseInt(s,16);
+										int opPart = 8 * Instruction.opcodes.get(parts[0]) + flags;
+										opPart += Instruction.numOnes(opPart)%2;
 									} catch(NumberFormatException e) {
 										error.append("\nError on line " + (i+1) + ": argument is not a hex number");
 									}
