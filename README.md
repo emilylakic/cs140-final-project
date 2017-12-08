@@ -29,7 +29,7 @@
   - [x] MenuBarBuilder
   - [x] CodeAccessException
   - [x] WindowListenerFactory
-  - [x] Note: You can now run the program. To run your Error checking Assembler, You replace SimpleAssembler() in the line private Assembler assembler = new SimpleAssembler(); near the start of FilesMgr with the name of the class that you have written. Your class must implement Assembler.
+  - [] Note: You can now run the program. To run your Error checking Assembler, You replace SimpleAssembler() in the line private Assembler assembler = new SimpleAssembler(); near the start of FilesMgr with the name of the class that you have written. Your class must implement Assembler.
 - [x] **Tests**
   - [x] Test 01 (Debug)
   - [x] Test 02 (Debug)
