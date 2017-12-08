@@ -1,17 +1,17 @@
 package projectview;
-
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import project.MachineModel;
 
 public class ProcessorViewPanel implements Observer {
-	
 	private MachineModel model;
 	private JTextField acc = new JTextField(); 
 	private JTextField pc = new JTextField();
@@ -20,22 +20,20 @@ public class ProcessorViewPanel implements Observer {
 		model = m;
 		view.addObserver(this);
 	}
-	
 	public JComponent createProcessorDisplay() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,0));
+		panel.setLayout(new GridLayout(1,2));
 		panel.add(new JLabel("Accumulator: ", JLabel.RIGHT));
 		panel.add(acc);
 		panel.add(new JLabel("Program Counter: ", JLabel.RIGHT));
 		panel.add(pc);
-		//panel add memory base?
 		return panel;
 	}
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if(model != null) {
 			acc.setText("" + model.getAccum());
-			pc.setText("" + model.getpCounter());
+			pc.setText("" + model.getPC());
 		}
 	}
 	

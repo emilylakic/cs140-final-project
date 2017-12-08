@@ -32,12 +32,16 @@ public class ControlPanel implements Observer{
         	panel.add(stepButton);
         
         	clearButton.setBackground(Color.WHITE);
-        	clearButton.addActionListener(e -> mediator.clearJob());
+        	clearButton.addActionListener(e -> mediator.clear());
         	panel.add(clearButton);
 
         	runButton.setBackground(Color.WHITE);
         	runButton.addActionListener(e -> mediator.toggleAutoStep());
         	panel.add(runButton);
+        	
+        	reloadButton.setBackground(Color.WHITE);
+        	reloadButton.addActionListener(e -> mediator.reload());
+        	panel.add(reloadButton);
         
         	JSlider slider = new JSlider(5,1000);
         	slider.addChangeListener(e -> mediator.setPeriod(slider.getValue())); // have not written the methods yet
@@ -48,7 +52,7 @@ public class ControlPanel implements Observer{
         
         @Override
         public void update(Observable arg0, Object arg1) {
-		runButton.setEnabled(mediator.getCurrentState().getRunPauseActive());
+        	runButton.setEnabled(mediator.getCurrentState().getRunPauseActive());
         	stepButton.setEnabled(mediator.getCurrentState().getStepActive());
         	clearButton.setEnabled(mediator.getCurrentState().getClearActive());
        		reloadButton.setEnabled(mediator.getCurrentState().getReloadActive());

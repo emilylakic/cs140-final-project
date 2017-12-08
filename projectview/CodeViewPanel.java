@@ -1,12 +1,28 @@
 package projectview;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import project.Instruction;
+import project.Loader;
+import project.MachineModel;
+import project.Memory;
 
 public class CodeViewPanel implements Observer {
 	
@@ -95,4 +111,17 @@ public class CodeViewPanel implements Observer {
 		}
 	}
 	
+	public static void main(String[] args) {
+		ViewMediator mediator = new ViewMediator(); 
+		MachineModel model = new MachineModel();
+		CodeViewPanel panel = new CodeViewPanel(mediator, model);
+		JFrame frame = new JFrame("TEST");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 700);
+		frame.setLocationRelativeTo(null);
+		frame.add(panel.createCodeDisplay());
+		frame.setVisible(true);
+		System.out.println(Loader.load(model, new File("factorial.pexe")));
+		panel.update(mediator, "Load Code");
+	}
 }

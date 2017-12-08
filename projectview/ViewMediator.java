@@ -6,10 +6,10 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.util.Observable;
 
+import project.CodeAccessException;
 import project.DivideByZeroException;
 import project.IllegalInstructionException;
 import project.MachineModel;
-import project.MenuBarBuilder;
 import project.ParityCheckException;
 import project.Memory;
 
@@ -135,7 +135,7 @@ public class ViewMediator extends Observable {
 
 
 	public void step() { 
-		while (currentState != States.PROGRAM_HALTED && 
+		if (currentState != States.PROGRAM_HALTED && 
 				currentState != States.NOTHING_LOADED) {
 			try {
 				model.step();
@@ -161,10 +161,9 @@ public class ViewMediator extends Observable {
 			} catch(DivideByZeroException e) {
 				// similar JOPtionPane
 			}
+			setChanged();
+			notifyObservers();
 		}
-		setChanged();
-		notifyObservers();
-		
 	}
 	
 	private void createAndShowGUI() {
@@ -202,7 +201,7 @@ public class ViewMediator extends Observable {
 		frame.addWindowListener(WindowListenerFactory.windowClosingFactory(e -> exit()));
 		frame.setLocationRelativeTo(null);
 		stepControl.start();
-		currentState().enter();
+		currentState.enter();
 		setChanged();
 		notifyObservers();
 		frame.setVisible(true);
@@ -219,17 +218,14 @@ public class ViewMediator extends Observable {
 	
 	public void toggleAutoStep(){
 		stepControl.toggleAutoStep();
-		if(stepControl.isAutoStepOn()) {
-			model.setCurrentState(States.AUTO_STEPPING);
-		} else {
-			model.setCurrentState(States.PROGRAM_LOADED_NOT_AUTOSTEPPING);
-		}
+		if(stepControl.isAutoStepOn()) setCurrentState(States.AUTO_STEPPING);
+		else setCurrentState(States.PROGRAM_LOADED_NOT_AUTOSTEPPING);
 	};
 	
 	public void reload(){
 		stepControl.setAutoStepOn(false);
 		clear();
-		filesMgr.finalLoad_ReloadStep(model.getCurrentJob());
+		filesMgr.finalLoad_ReloadStep();
 		
 	};
 	public void setPeriod(int value){
@@ -244,14 +240,45 @@ public class ViewMediator extends Observable {
 		setChanged();
 		notifyObservers(s);
 	}
-	public void execute() {  }
+	
+	public void execute() {
+		while (currentState != States.PROGRAM_HALTED && 
+				currentState != States.NOTHING_LOADED) {
+			try {
+				model.step();
+			} catch (CodeAccessException e) {
+				JOptionPane.showMessageDialog(frame, 
+					"Illegal access to code from line " + model.getPC() + "\n"
+							+ "Exception message: " + e.getMessage(),
+							"Run time error",
+							JOptionPane.OK_OPTION);
+				System.out.println("Illegal access to code from line " + model.getPC()); // just for debugging
+				System.out.println("Exception message: " + e.getMessage());			
+			} catch(ArrayIndexOutOfBoundsException e) {
+				// similar JOPtionPane
+	// YOU HAVE TO FILL OUT ALL THESE CATCH BLOCKS
+			} catch(NullPointerException e) {
+				// similar JOPtionPane
+			} catch(ParityCheckException e) {
+				// similar JOPtionPane
+			} catch(IllegalInstructionException e) {
+				// similar JOPtionPane
+			} catch(IllegalArgumentException e) {
+				// similar JOPtionPane
+			} catch(DivideByZeroException e) {
+				// similar JOPtionPane
+			}
+		}
+		setChanged();
+		notifyObservers();
+	}
 	
 	public void assembleFile() { 
 		filesMgr.assembleFile();
 	}
 	
 	public void loadFile() { 
-		filesMgr.loadFile(model.getCurrentJob());
+		filesMgr.loadFile();
 	}
 	
 	public void exit() { // method executed when user exits the program
